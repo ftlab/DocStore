@@ -4,7 +4,11 @@ using System.Text;
 
 namespace DocModel.Core
 {
-    public interface IDocSchema
+    public enum NodeType
     {
+        None = 0,
+        Document = 1,
+        Property = 2,
+        Attribute = 3,
     }
 }
