@@ -10,5 +10,6 @@ namespace DocModel.Core
         INode Next { get; }
         void AddAfterSelf(INode node);
         void AddAfterSeolf(IEnumerable<INode> nodes);
+
     }
 }

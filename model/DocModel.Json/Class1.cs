@@ -12,7 +12,7 @@ namespace DocModel.Json
         public JDoc(JObject raw)
         {
             _raw = raw ?? throw new ArgumentNullException(nameof(raw));
-            XDocument
+            JValue
         }
     }
 }
