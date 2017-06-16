@@ -7,7 +7,6 @@ namespace DocModel.Core
     public enum NodeType
     {
         None = 0,
-        Document = 1,
         Property = 2,
         Attribute = 3,
     }

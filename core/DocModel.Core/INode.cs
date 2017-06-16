@@ -1,15 +1,17 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace DocModel.Core
 {
-    public interface INode : INodeInfo, INotifyPropertyChanged
+    public interface INode : IDictionary<string, INode>, INotifyPropertyChanged
     {
-        IDoc Parent { get; }
+        IDoc Doc { get; }
+        INodeInfo Info { get; }
+        INode Parent { get; }
         NodeType NodeType { get; }
         INode Previous { get; }
         INode Next { get; }
         void AddAfterSelf(INode node);
-        void AddAfterSeolf(IEnumerable<INode> nodes);
-
+        void AddAfterSelf(IEnumerable<INode> nodes);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DocStore.Core
+namespace DocStore.Censor
 {
     public class Class1
     {
