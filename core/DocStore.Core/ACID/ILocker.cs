@@ -23,7 +23,10 @@ namespace DocStore.Core.ACID
         /// <param name="obj">объект</param>
         /// <param name="lockType">тип блокировки</param>
         /// <param name="source">источник</param>
-        void SetLock(TObject obj, LockType lockType, TSource source = null);
+        void SetLock(
+            TObject obj
+            , LockType lockType
+            , TSource source = null);
 
         /// <summary>
         /// Усиление блокировки
@@ -31,12 +34,16 @@ namespace DocStore.Core.ACID
         /// <param name="obj">объект</param>
         /// <param name="lockType">тип блокировки</param>
         /// <param name="source">источник</param>
-        void GainLock(TObject obj, LockType lockType, TSource source = null);
+        void GainLock(
+            TObject obj
+            , LockType lockType
+            , TSource source = null);
 
         /// <summary>
         /// Удалить блокировку
         /// </summary>
         /// <param name="obj">объект</param>
-        void ClearLock(TObject obj);
+        void ClearLock(
+            TObject obj);
     }
 }

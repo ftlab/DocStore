@@ -4,10 +4,9 @@ using System.Text;
 
 namespace DocModel.Core
 {
-    public interface IDocSchema<TType>
+    public interface IDocIdentity<TIdentity, TType>
     {
+        TIdentity Id { get; }
         IDocType<TType> Type { get; }
-
-        IDictionary<string, INodeSchema> Elements { get; }
     }
 }

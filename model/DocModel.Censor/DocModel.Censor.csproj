@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\core\DocStore.Core\DocStore.Core.csproj" />
-    <ProjectReference Include="..\..\model\DocModel.Censor\DocModel.Censor.csproj" />
+    <ProjectReference Include="..\..\core\DocModel.Core\DocModel.Core.csproj" />
   </ItemGroup>
 
 </Project>

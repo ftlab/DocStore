@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocStore.EF", "store\DocSto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocStore.Censor", "store\DocStore.Censor\DocStore.Censor.csproj", "{43C4AF6E-BE93-4994-897A-C0B675F98EEE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocModel.Censor", "model\DocModel.Censor\DocModel.Censor.csproj", "{471CD756-E211-450F-BB52-DBD7C924EAB4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{43C4AF6E-BE93-4994-897A-C0B675F98EEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43C4AF6E-BE93-4994-897A-C0B675F98EEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43C4AF6E-BE93-4994-897A-C0B675F98EEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{471CD756-E211-450F-BB52-DBD7C924EAB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{471CD756-E211-450F-BB52-DBD7C924EAB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{471CD756-E211-450F-BB52-DBD7C924EAB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{471CD756-E211-450F-BB52-DBD7C924EAB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -85,5 +91,6 @@ Global
 		{B2BE1DE7-56E2-4447-801E-EC7F625A0EB4} = {77646363-15EA-45CC-8E9A-2286BE651EDE}
 		{A75EFC38-80B8-4856-B130-6D261CF90949} = {77646363-15EA-45CC-8E9A-2286BE651EDE}
 		{43C4AF6E-BE93-4994-897A-C0B675F98EEE} = {77646363-15EA-45CC-8E9A-2286BE651EDE}
+		{471CD756-E211-450F-BB52-DBD7C924EAB4} = {227C7718-E0BC-4986-96DA-EF23BFD74FBD}
 	EndGlobalSection
 EndGlobal

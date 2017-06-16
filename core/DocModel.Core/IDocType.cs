@@ -7,12 +7,12 @@ namespace DocModel.Core
     /// <summary>
     /// Тип документа
     /// </summary>
-    public interface IDocType
+    public interface IDocType<out TType>
     {
         /// <summary>
         /// Идентификатор типа
         /// </summary>
-        ushort TypeId { get; }
+        TType TypeId { get; }
 
         /// <summary>
         /// Наименование типа документа
