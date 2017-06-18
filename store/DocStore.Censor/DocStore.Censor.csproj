@@ -9,4 +9,8 @@
     <ProjectReference Include="..\..\model\DocModel.Censor\DocModel.Censor.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.2" />
+  </ItemGroup>
+
 </Project>

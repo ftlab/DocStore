@@ -19,8 +19,25 @@ namespace DocStore.Censor.ACID
         {
             _conn = conn ?? throw new ArgumentNullException(nameof(conn));
 
+            Start();
+        }
+
+        private void Start()
+        {
             if (Conn.State != System.Data.ConnectionState.Open) Conn.Open();
             _tran = Conn.BeginTransaction();
+
+            using (var cmd = Conn.CreateCommand())
+            {
+                cmd.Transaction = Tran;
+                cmd.CommandText = "INSERT INTO T_CURRENTTRANSACTION (NAME) VALUES (@NAME)";
+
+                var pName = cmd.CreateParameter();
+                pName.Value = Name;
+                cmd.Parameters.Add(pName);
+
+                cmd.ExecuteNonQuery();
+            }
         }
 
         private DbConnection Conn => _conn;
