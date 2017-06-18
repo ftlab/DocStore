@@ -29,6 +29,17 @@ namespace DocStore.Core.ACID
             , TSource source = null);
 
         /// <summary>
+        /// Установить блокировку
+        /// </summary>
+        /// <param name="objs">объекты</param>
+        /// <param name="lockType">тип блокировки</param>
+        /// <param name="source">источник</param>
+        void SetLock(
+            IEnumerable<TObject> objs
+            , LockType lockType
+            , TSource source = null);
+
+        /// <summary>
         /// Усиление блокировки
         /// </summary>
         /// <param name="obj">объект</param>
@@ -40,10 +51,28 @@ namespace DocStore.Core.ACID
             , TSource source = null);
 
         /// <summary>
+        /// Усиление блокировки
+        /// </summary>
+        /// <param name="objs">объекты</param>
+        /// <param name="lockType">тип блокировки</param>
+        /// <param name="source">источник</param>
+        void GainLock(
+            IEnumerable<TObject> objs
+            , LockType lockType
+            , TSource source = null);
+
+        /// <summary>
         /// Удалить блокировку
         /// </summary>
         /// <param name="obj">объект</param>
         void ClearLock(
             TObject obj);
+
+        /// <summary>
+        /// Удалить блокировку
+        /// </summary>
+        /// <param name="objs">объекты</param>
+        void ClearLock(
+            IEnumerable<TObject> objs);
     }
 }

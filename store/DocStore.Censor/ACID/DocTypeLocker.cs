@@ -2,31 +2,36 @@
 using DocStore.Core.ACID;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 
 namespace DocStore.Censor.ACID
 {
-    public class DocTypeLocker : BaseLocker<DocumentElement, string>
+    public class DocTypeLocker : BaseDocTypeLocker<DocumentElement, ushort, string>
     {
-        public DocTypeLocker(CensorTransaction transaction) : base(transaction)
+        public DocTypeLocker(RemoteTransaction transaction) : base(transaction)
         {
         }
 
-        protected override BaseTransaction Transaction => throw new NotImplementedException();
+        public new RemoteTransaction Transaction => (RemoteTransaction)base.Transaction;
 
-        protected override void ClearLock(DocumentElement obj)
+        protected override void ClearLock(IEnumerable<DocumentElement> objs)
         {
             throw new NotImplementedException();
         }
 
-        protected override void GainLock(DocumentElement obj, LockType lockType, string source = null)
+        protected override void GainLock(IEnumerable<DocumentElement> objs, LockType lockType, string source = null)
         {
             throw new NotImplementedException();
         }
 
-        protected override void SetLock(DocumentElement obj, LockType lockType, string source = null)
+        protected override void SetLock(
+            IEnumerable<DocumentElement> objs
+            , LockType lockType
+            , string source = null)
         {
-            throw new NotImplementedException();
+
         }
     }
 }

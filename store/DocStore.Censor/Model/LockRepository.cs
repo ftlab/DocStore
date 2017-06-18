@@ -45,6 +45,24 @@ namespace DocStore.Censor.Model
 
             using (var reader = builder.Create(locks))
             {
+                BulkWrite(nameof(T_DocumentLock), reader);
+            }
+        }
+
+        public void WriteLocks(IEnumerable<T_DocumentTypeLock> locks)
+        {
+            if (locks == null) throw new ArgumentNullException(nameof(locks));
+
+            var builder = new DataReaderBuilder<T_DocumentTypeLock>()
+                .AddMap(x => x.Id)
+                .AddMap(x => x.TransactionName)
+                .AddMap(x => x.DocumentTypeId)
+                .AddMap(x => x.Comment)
+                .AddMap(x => x.LockSource)
+                .AddMap(x => x.Level);
+
+            using (var reader = builder.Create(locks))
+            {
                 BulkWrite(nameof(T_DocumentTypeLock), reader);
             }
         }
