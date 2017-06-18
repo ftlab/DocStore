@@ -7,15 +7,11 @@ namespace DocStore.Censor.ACID
 {
     public class RemoteTransaction : BaseTransaction
     {
-        private string _source;
-
         public RemoteTransaction(string name, string source)
-            : base(name)
+            : base(name, source)
         {
-            _source = source ?? throw new ArgumentNullException(nameof(source));
-        }
 
-        public string Source => _source;
+        }
 
         public override void Commit() { }
 

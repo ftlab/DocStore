@@ -5,10 +5,8 @@ using System.Text;
 
 namespace DocStore.Core.ACID
 {
-    public abstract class BaseDocTypeLocker<TDocType, TType, TSource>
-        : BaseLocker<TDocType, TSource>
-
-        where TSource : class
+    public abstract class BaseDocTypeLocker<TDocType, TType>
+        : BaseLocker<TDocType>
         where TDocType : IDocType<TType>
     {
         protected BaseDocTypeLocker(BaseTransaction transaction) : base(transaction)

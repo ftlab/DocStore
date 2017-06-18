@@ -10,9 +10,7 @@ namespace DocStore.Core.ACID
     /// Базовый механизм блокирования
     /// </summary>
     /// <typeparam name="TObject">тип объекта</typeparam>
-    /// <typeparam name="TSource">тип источника</typeparam>
-    public abstract class BaseLocker<TObject, TSource> : ILocker<TObject, TSource>
-        where TSource : class
+    public abstract class BaseLocker<TObject> : ILocker<TObject>
     {
         /// <summary>
         /// Транзакция
@@ -37,7 +35,7 @@ namespace DocStore.Core.ACID
         /// <summary>
         /// Транзакция
         /// </summary>
-        ITransaction ILocker<TObject, TSource>.Transaction => Transaction;
+        ITransaction ILocker<TObject>.Transaction => Transaction;
 
         /// <summary>
         /// Удалить блокировку
@@ -59,52 +57,55 @@ namespace DocStore.Core.ACID
         /// </summary>
         /// <param name="obj">объект</param>
         /// <param name="lockType">тип блокировки</param>
-        /// <param name="source">источник</param>
         protected virtual void GainLock(
             TObject obj
-            , LockType lockType
-            , TSource source = null) =>
-            GainLock(Enumerable.Repeat(obj, 1), lockType, source);
+            , LockType lockType) =>
+            GainLock(Enumerable.Repeat(obj, 1), lockType);
 
         /// <summary>
         /// Усилить блокировку
         /// </summary>
         /// <param name="objs">объекты</param>
         /// <param name="lockType">тип блокировки</param>
-        /// <param name="source">источник</param>
         protected abstract void GainLock(
             IEnumerable<TObject> objs
-            , LockType lockType
-            , TSource source = null);
+            , LockType lockType);
 
         /// <summary>
         /// Установить блокировку
         /// </summary>
         /// <param name="obj">объект</param>
         /// <param name="lockType">тип блокировки</param>
-        /// <param name="source">источник</param>
         protected virtual void SetLock(
             TObject obj
-            , LockType lockType
-            , TSource source = null) =>
-            SetLock(Enumerable.Repeat(obj, 1), lockType, source);
+            , LockType lockType) =>
+            SetLock(Enumerable.Repeat(obj, 1), lockType);
 
         /// <summary>
         /// Установить блокировку
         /// </summary>
         /// <param name="objs">объекты</param>
         /// <param name="lockType">тип блокировки</param>
-        /// <param name="source">источник</param>
         protected abstract void SetLock(
             IEnumerable<TObject> objs
-            , LockType lockType
-            , TSource source = null);
+            , LockType lockType);
+
+        /// <summary>
+        /// Очистка ресурсов
+        /// </summary>
+        void IDisposable.Dispose() =>
+            Dispose();
+
+        /// <summary>
+        /// Очистка ресурсов
+        /// </summary>
+        protected abstract void Dispose();
 
         /// <summary>
         /// Удалить блокировку
         /// </summary>
         /// <param name="obj">объект</param>
-        void ILocker<TObject, TSource>.ClearLock(
+        void ILocker<TObject>.ClearLock(
             TObject obj) =>
             ClearLock(obj);
 
@@ -112,7 +113,7 @@ namespace DocStore.Core.ACID
         /// Удалить блокировку
         /// </summary>
         /// <param name="objs">объекты</param>
-        void ILocker<TObject, TSource>.ClearLock(
+        void ILocker<TObject>.ClearLock(
             IEnumerable<TObject> objs) =>
             ClearLock(objs);
 
@@ -121,47 +122,39 @@ namespace DocStore.Core.ACID
         /// </summary>
         /// <param name="obj">объект</param>
         /// <param name="lockType">тип блокировки</param>
-        /// <param name="source">источник</param>
-        void ILocker<TObject, TSource>.GainLock(
+        void ILocker<TObject>.GainLock(
             TObject obj
-            , LockType lockType
-            , TSource source) =>
-            GainLock(obj, lockType, source);
+            , LockType lockType) =>
+            GainLock(obj, lockType);
 
         /// <summary>
         /// Усилить блокировку
         /// </summary>
         /// <param name="objs">объекты</param>
         /// <param name="lockType">тип блокировки</param>
-        /// <param name="source">источник</param>
-        void ILocker<TObject, TSource>.GainLock(
+        void ILocker<TObject>.GainLock(
             IEnumerable<TObject> objs
-            , LockType lockType
-            , TSource source) =>
-            GainLock(objs, lockType, source);
+            , LockType lockType) =>
+            GainLock(objs, lockType);
 
         /// <summary>
         /// Установить блокировку
         /// </summary>
         /// <param name="obj">объект</param>
         /// <param name="lockType">тип блокировки</param>
-        /// <param name="source">источник</param>
-        void ILocker<TObject, TSource>.SetLock(
+        void ILocker<TObject>.SetLock(
             TObject obj
-            , LockType lockType
-            , TSource source) =>
-            SetLock(obj, lockType, source);
+            , LockType lockType) =>
+            SetLock(obj, lockType);
 
         /// <summary>
         /// Установить блокировку
         /// </summary>
         /// <param name="objs">объекты</param>
         /// <param name="lockType">тип блокировки</param>
-        /// <param name="source">источник</param>
-        void ILocker<TObject, TSource>.SetLock(
+        void ILocker<TObject>.SetLock(
             IEnumerable<TObject> objs
-            , LockType lockType
-            , TSource source) =>
-        SetLock(objs, lockType, source);
+            , LockType lockType) =>
+        SetLock(objs, lockType);
     }
 }

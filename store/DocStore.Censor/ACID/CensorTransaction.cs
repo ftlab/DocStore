@@ -14,8 +14,9 @@ namespace DocStore.Censor.ACID
 
         public CensorTransaction(
             DbConnection conn
-            , string name)
-            : base(name)
+            , string name
+            , string source)
+            : base(name, source)
         {
             _conn = conn ?? throw new ArgumentNullException(nameof(conn));
 
@@ -30,11 +31,16 @@ namespace DocStore.Censor.ACID
             using (var cmd = Conn.CreateCommand())
             {
                 cmd.Transaction = Tran;
-                cmd.CommandText = "INSERT INTO T_CURRENTTRANSACTION (NAME) VALUES (@NAME)";
+                cmd.CommandText = "INSERT INTO T_CURRENTTRANSACTION (NAME, SOURCE) VALUES (@NAME, @SOURCE)";
 
                 var pName = cmd.CreateParameter();
                 pName.Value = Name;
+                pName.ParameterName = nameof(Name);
                 cmd.Parameters.Add(pName);
+                var pSource = cmd.CreateParameter();
+                pSource.Value = Source;
+                pSource.ParameterName = nameof(Source);
+                cmd.Parameters.Add(pSource);
 
                 cmd.ExecuteNonQuery();
             }

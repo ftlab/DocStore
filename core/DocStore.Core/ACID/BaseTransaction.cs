@@ -14,33 +14,31 @@ namespace DocStore.Core.ACID
         /// </summary>
         private readonly string _name;
 
-        protected BaseTransaction()
-            : this(Guid.NewGuid().ToString())
+        private readonly string _source;
+
+        protected BaseTransaction(
+            string source)
+            : this(Guid.NewGuid().ToString(), source)
         {
 
         }
 
         protected BaseTransaction(
-            string name)
+            string name
+            , string source)
         {
             _name = name ?? throw new ArgumentNullException(nameof(name));
+            _source = source;
         }
 
         public virtual string Name => _name;
+
+        public virtual string Source => _source;
 
         public abstract void Commit();
 
         public abstract void Rollback();
 
         public abstract void Dispose();
-
-        void ITransaction.Commit() =>
-            Commit();
-
-        void ITransaction.Rollback() =>
-            Rollback();
-
-        void IDisposable.Dispose() =>
-            Dispose();
     }
 }

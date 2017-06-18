@@ -15,6 +15,11 @@ namespace DocStore.Core.ACID
         string Name { get; }
 
         /// <summary>
+        /// Источник
+        /// </summary>
+        string Source { get; }
+
+        /// <summary>
         /// Принять изменения
         /// </summary>
         void Commit();
