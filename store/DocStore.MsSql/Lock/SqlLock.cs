@@ -19,12 +19,12 @@ namespace DocStore.MsSql
         /// <summary>
         /// Транзакция
         /// </summary>
-        public SqlTransaction Tran => (SqlTransaction)base.Tran;
+        public new SqlTransaction Tran => (SqlTransaction)base.Tran;
 
         /// <summary>
         /// Соединение к БД
         /// </summary>
-        public SqlConnection Conn => (SqlConnection)base.Conn;
+        public new SqlConnection Conn => (SqlConnection)base.Conn;
 
         /// <summary>
         /// Получить блокировку
