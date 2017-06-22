@@ -65,6 +65,7 @@
     <None Include="Compare.scmp" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\T_Rlock.sql" />
+    <Build Include="dbo\Tables\XLock.sql" />
+    <Build Include="dbo\Tables\SLock.sql" />
   </ItemGroup>
 </Project>

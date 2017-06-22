@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DocStore.Core.Lock
 {
@@ -55,7 +56,7 @@ namespace DocStore.Core.Lock
             , string owner = null
             , TimeSpan? timeout = default(TimeSpan?))
         {
-            throw new NotImplementedException();
+            return LockResult.Granted;
         }
 
         #region IDisposable Support
