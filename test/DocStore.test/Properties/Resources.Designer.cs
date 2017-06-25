@@ -62,7 +62,7 @@ namespace DocStore.test.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Data Source=LENOVO-PC;Persist Security Info=True;User ID=sa;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Password=P@ssw0rd.
+        ///   Looks up a localized string similar to Data Source=LENOVO-PC;DataBase=DbLock;Persist Security Info=True;User ID=sa;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Password=P@ssw0rd.
         /// </summary>
         internal static string DbConn {
             get {

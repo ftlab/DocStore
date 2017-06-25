@@ -14,7 +14,7 @@
     </RootPath>
     <RootNamespace>DbLock</RootNamespace>
     <AssemblyName>DbLock</AssemblyName>
-    <ModelCollation>1049,CI</ModelCollation>
+    <ModelCollation>1049,CS</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
@@ -23,7 +23,7 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
-    <DefaultCollation>Cyrillic_General_100_CI_AS</DefaultCollation>
+    <DefaultCollation>Cyrillic_General_100_CS_AI</DefaultCollation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>

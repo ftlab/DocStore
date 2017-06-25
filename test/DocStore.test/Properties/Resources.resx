@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DbConn" xml:space="preserve">
-    <value>Data Source=LENOVO-PC;Persist Security Info=True;User ID=sa;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Password=P@ssw0rd</value>
+    <value>Data Source=LENOVO-PC;DataBase=DbLock;Persist Security Info=True;User ID=sa;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Password=P@ssw0rd</value>
   </data>
 </root>
