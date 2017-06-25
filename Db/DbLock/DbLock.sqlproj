@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Compare.scmp" />
+    <None Include="DbLock.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\XLock.sql" />
