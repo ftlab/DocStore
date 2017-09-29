@@ -17,5 +17,9 @@ namespace Doc.Core
             Childs.Add(observer ?? throw new ArgumentNullException(nameof(observer)));
             return this;
         }
+
+        public void OnEndVisit() => Childs.ForEach(c => c.OnEndVisit());
+
+        public void OnStartVisit() => Childs.ForEach(c => c.OnStartVisit());
     }
 }

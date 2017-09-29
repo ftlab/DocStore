@@ -8,5 +8,8 @@ namespace Doc.Core
 {
     public interface IReaderObserver
     {
+        void OnStartVisit();
+
+        void OnEndVisit();
     }
 }
