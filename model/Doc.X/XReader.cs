@@ -17,9 +17,40 @@ namespace Doc.X
             _reader = reader ?? throw new ArgumentNullException(nameof(reader));
         }
 
+        public XmlReader Reader => _reader;
+
         public bool Read()
         {
-            throw new NotImplementedException();
+            bool? skip = true;
+            while (skip == true)
+            {
+                if (
+                       Reader.NodeType == XmlNodeType.CDATA
+                    || Reader.NodeType == XmlNodeType.Comment
+                    || Reader.NodeType == XmlNodeType.DocumentType
+                    || Reader.NodeType == XmlNodeType.EndEntity
+                    || Reader.NodeType == XmlNodeType.Entity
+                    || Reader.NodeType == XmlNodeType.EntityReference
+                    || Reader.NodeType == XmlNodeType.None
+                    || Reader.NodeType == XmlNodeType.Notation
+                    || Reader.NodeType == XmlNodeType.ProcessingInstruction
+                    || Reader.NodeType == XmlNodeType.SignificantWhitespace
+                    || Reader.NodeType == XmlNodeType.Whitespace
+                    || Reader.NodeType == XmlNodeType.XmlDeclaration)
+                    skip = Reader.Read();
+                else if (
+                    Reader.NodeType == XmlNodeType.Attribute
+                    || Reader.NodeType == XmlNodeType.Document
+                    || Reader.NodeType == XmlNodeType.Element
+                    || Reader.NodeType == XmlNodeType.EndElement
+                    )
+                    skip = null;
+                else throw new NotSupportedException(Reader.NodeType.ToString());
+            }
+            return skip ?? Reader.Read();
         }
+
+
+
     }
 }
