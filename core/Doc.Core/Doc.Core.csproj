@@ -40,14 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IDoc.cs" />
-    <Compile Include="IDocObserver.cs" />
-    <Compile Include="IDocVisitor.cs" />
     <Compile Include="IReader.cs" />
-    <Compile Include="ISchema.cs" />
-    <Compile Include="NodeType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SchemaType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

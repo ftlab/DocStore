@@ -21,7 +21,7 @@ namespace Doc.X
 
         public bool Read()
         {
-            bool? skip = true;
+            bool? skip = Reader.Read();
             while (skip == true)
             {
                 if (
@@ -47,7 +47,7 @@ namespace Doc.X
                     skip = null;
                 else throw new NotSupportedException(Reader.NodeType.ToString());
             }
-            return skip ?? Reader.Read();
+            return skip ?? true;
         }
 
 
