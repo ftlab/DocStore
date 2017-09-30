@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Doc.Core
 {
-    public interface IReaderObserver
+    public interface INode
     {
-        void OnStartVisit();
+        NodeType Type { get; }
 
-        void OnEndVisit();
+        string Path { get; }
+
+        string Value { get; }
     }
 }

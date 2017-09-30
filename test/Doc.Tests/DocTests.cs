@@ -4,6 +4,7 @@ using System.IO;
 using System.Xml;
 using Doc.X;
 using Doc.Core;
+using System.Diagnostics;
 
 namespace Doc.Tests
 {
@@ -15,13 +16,7 @@ namespace Doc.Tests
         public void DOC_Xml()
         {
             Assert.IsTrue(File.Exists("sample.xml"));
-
-            using (var stream = File.OpenRead("sample.xml"))
-            using (var reader = XmlReader.Create(stream))
-            using (var xreader = new XReader(reader))
-            {
-                while (xreader.Read()) ;
-            }
+            
         }
 
         [TestMethod]

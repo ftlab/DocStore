@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XReader.cs" />
+    <Compile Include="XmlNodeReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\core\Doc.Core\Doc.Core.csproj">

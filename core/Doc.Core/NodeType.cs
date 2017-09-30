@@ -2,8 +2,8 @@
 {
     public enum NodeType
     {
-        None,
-        Property,
+        StartProperty,
+        EndProperty,
         Value,
     }
 }
