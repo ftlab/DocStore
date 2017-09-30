@@ -20,9 +20,17 @@ namespace Doc.Core
             Observer.OnStartVisit();
             while (reader.Read())
             {
-
+                if (reader.NodeType == NodeType.None)
+                    continue;
+                else if (reader.NodeType == NodeType.Property)
+                    VisitProperty(reader);
             }
             Observer.OnEndVisit();
+        }
+
+        protected virtual void VisitProperty(IReader reader)
+        {
+            
         }
     }
 }

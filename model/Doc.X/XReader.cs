@@ -1,9 +1,5 @@
 ﻿using Doc.Core;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace Doc.X
@@ -18,6 +14,24 @@ namespace Doc.X
         }
 
         public XmlReader Reader => _reader;
+
+        public NodeType NodeType
+        {
+            get
+            {
+                if (Reader.NodeType == XmlNodeType.None)
+                    return NodeType.None;
+                else if (Reader.NodeType == XmlNodeType.Element)
+                    return NodeType.Property;
+                else if (Reader.NodeType == XmlNodeType.Attribute)
+                    return NodeType.Property;
+                else if (Reader.NodeType == XmlNodeType.Text)
+                    return NodeType.Value;
+                else throw new NotSupportedException(Reader.NodeType.ToString());
+            }
+        }
+
+        public string PropertyName => Reader.LocalName;
 
         public bool Read()
         {

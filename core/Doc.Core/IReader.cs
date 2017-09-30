@@ -9,5 +9,9 @@ namespace Doc.Core
     public interface IReader
     {
         bool Read();
+
+        NodeType NodeType { get; }
+
+        string PropertyName { get; }
     }
 }

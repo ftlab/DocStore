@@ -1,16 +1,11 @@
 ﻿using Doc.Core;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Doc.J
 {
     public class JReader : IReader
     {
-
         private readonly JsonReader _reader;
 
         public JReader(JsonReader reader)
@@ -19,6 +14,20 @@ namespace Doc.J
         }
 
         public JsonReader Reader => _reader;
+
+        public NodeType NodeType
+        {
+            get
+            {
+                if (Reader.TokenType == JsonToken.None)
+                    return NodeType.None;
+                else if (Reader.TokenType == JsonToken.PropertyName)
+                    return NodeType.Property;
+                else throw new NotSupportedException(Reader.TokenType.ToString());
+            }
+        }
+
+        public string PropertyName => Reader.Path;
 
         public bool Read()
         {
