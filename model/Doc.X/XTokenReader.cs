@@ -5,7 +5,7 @@ using System.Xml;
 
 namespace Doc.X
 {
-    public class XNodeReader : ITokenReader
+    public class XTokenReader : ITokenReader
     {
         private readonly XmlReader _reader;
 
@@ -13,7 +13,7 @@ namespace Doc.X
 
         private XmlNodeType _prevNode = XmlNodeType.None;
 
-        public XNodeReader(XmlReader reader)
+        public XTokenReader(XmlReader reader)
         {
             _reader = reader;
         }

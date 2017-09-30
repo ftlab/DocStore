@@ -18,7 +18,7 @@ namespace Doc.Tests
             Assert.IsTrue(File.Exists("sample.xml"));
 
             using (var xReader = XmlReader.Create("sample.xml"))
-            using (var nodeReader = new XNodeReader(xReader))
+            using (var nodeReader = new XTokenReader(xReader))
             {
                 foreach (var node in nodeReader.Read())
                 {
