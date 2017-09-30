@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace Doc.Core
 {
-    public interface IToken
+    public interface ITokenVisitor
     {
-        TokenType Type { get; }
-
-        string Path { get; }
-
-        object Value { get; }
+        void Visit(ITokenReader reader);
     }
 }

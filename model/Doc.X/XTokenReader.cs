@@ -9,8 +9,6 @@ namespace Doc.X
     {
         private readonly XmlReader _reader;
 
-        private readonly Path _path = new Path();
-
         private XmlNodeType _prevNode = XmlNodeType.None;
 
         public XTokenReader(XmlReader reader)
@@ -19,8 +17,6 @@ namespace Doc.X
         }
 
         public XmlReader Reader => _reader;
-
-        public Path Path => _path;
 
         public XmlNodeType PrevNode { get => _prevNode; private set => _prevNode = value; }
 
@@ -62,49 +58,37 @@ namespace Doc.X
 
         private IEnumerable<IToken> OnEndElement()
         {
-            
-            yield return new Token()
+            yield return new XEndPropertyToken()
             {
-                Path = Path.GetFullPath(),
-                Type = TokenType.EndProperty,
+                Name = Reader.LocalName,
+                Namespace = Reader.NamespaceURI
             };
-            if (Reader.LocalName != Path.Pop())
-                throw new NotSupportedException();
         }
 
         private IEnumerable<IToken> OnText()
         {
-            yield return new Token()
+            yield return new StringToken()
             {
-                Path = Path.GetFullPath(),
-                Type = TokenType.Value,
                 Value = Reader.Value,
             };
         }
 
         private IEnumerable<IToken> OnElement()
         {
-            Path.Push(Reader.LocalName);
-
-            yield return new Token()
+            yield return new XStartPropertyToken()
             {
-                Path = Path.GetFullPath(),
-                Type = TokenType.StartProperty,
+                Name = Reader.LocalName,
+                Namespace = Reader.NamespaceURI,
             };
             if (Reader.IsEmptyElement)
             {
-                yield return new Token()
+                yield return NullToken.Value;
+
+                yield return new XEndPropertyToken()
                 {
-                    Path = Path.GetFullPath(),
-                    Type = TokenType.Null,
+                    Name = Reader.LocalName,
+                    Namespace = Reader.NamespaceURI,
                 };
-                yield return new Token()
-                {
-                    Path = Path.GetFullPath(),
-                    Type = TokenType.EndProperty
-                };
-                if (Path.Pop() != Reader.LocalName)
-                    throw new NotSupportedException();
             }
         }
     }

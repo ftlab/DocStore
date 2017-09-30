@@ -3,8 +3,11 @@
     public enum TokenType
     {
         StartProperty,
+
         EndProperty,
-        Value,
+
+        String,
+
         Null,
     }
 }
