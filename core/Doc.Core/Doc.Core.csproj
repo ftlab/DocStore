@@ -40,12 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="INode.cs" />
-    <Compile Include="INodeReader.cs" />
-    <Compile Include="Node.cs" />
-    <Compile Include="NodeType.cs" />
+    <Compile Include="IToken.cs" />
+    <Compile Include="ITokenReader.cs" />
     <Compile Include="Path.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Token.cs" />
+    <Compile Include="TokenType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

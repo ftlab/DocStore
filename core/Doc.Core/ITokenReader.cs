@@ -9,12 +9,12 @@ namespace Doc.Core
     /// <summary>
     /// Считыватель узлов документа
     /// </summary>
-    public interface INodeReader : IDisposable
+    public interface ITokenReader : IDisposable
     {
         /// <summary>
         /// Считать
         /// </summary>
         /// <returns></returns>
-        IEnumerable<INode> Read();
+        IEnumerable<IToken> Read();
     }
 }

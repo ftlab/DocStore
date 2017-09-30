@@ -15,7 +15,7 @@ namespace Doc.Core
         public string GetFullPath()
         {
             var builder = new StringBuilder();
-            foreach (var node in this)
+            foreach (var node in this.Reverse())
             {
                 builder.Append($"/{node}");
             }

@@ -16,7 +16,15 @@ namespace Doc.Tests
         public void DOC_Xml()
         {
             Assert.IsTrue(File.Exists("sample.xml"));
-            
+
+            using (var xReader = XmlReader.Create("sample.xml"))
+            using (var nodeReader = new XNodeReader(xReader))
+            {
+                foreach (var node in nodeReader.Read())
+                {
+                    Debug.WriteLine(node);
+                }
+            }
         }
 
         [TestMethod]

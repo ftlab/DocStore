@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Doc.Core
 {
-    public interface INode
+    public interface IToken
     {
-        NodeType Type { get; }
+        TokenType Type { get; }
 
         string Path { get; }
 
-        string Value { get; }
+        object Value { get; }
     }
 }

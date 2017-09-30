@@ -1,9 +1,10 @@
 ﻿namespace Doc.Core
 {
-    public enum NodeType
+    public enum TokenType
     {
         StartProperty,
         EndProperty,
         Value,
+        Null,
     }
 }
