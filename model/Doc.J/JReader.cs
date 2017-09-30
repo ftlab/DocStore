@@ -29,6 +29,11 @@ namespace Doc.J
 
         public string PropertyName => Reader.Path;
 
+        public void Dispose()
+        {
+
+        }
+
         public bool Read()
         {
             bool? skip = Reader.Read();

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Envelope>
+  <Header>
+    <From tp="http">http://sample.com</From>
+    <To tp="http">http://sample.com</To>
+    <Lifecicle>
+      <Id>1</Id>
+      <Id>2</Id>
+      <Id>3</Id>
+    </Lifecicle>
+  </Header>
+  <Body>
+    <Document Id="1">
+      <Key name="Open" date="2017-01-01">
+      </Key>
+      <Data>
+        <Code></Code>
+        <Name k="334"></Name>
+        <Complex>
+          <Key1></Key1>
+          <Key2></Key2>
+        </Complex>
+        <Client>
+          <Id>1</Id>
+        </Client>
+        <Client>
+          <Id>2</Id>
+        </Client>
+        <Container>
+          <Child Id="1" date="2018-01-01">
+            <Name>He</Name>
+            <Code/>
+            <Date>2019-01-01</Date>
+          </Child>
+          <Child Id="2" date="2018-01-01">
+            <Name>H</Name>
+            <Code>TT</Code>
+            <Date>2019-01-01</Date>
+          </Child>
+        </Container>
+      </Data>
+    </Document>
+  </Body>
+</Envelope>

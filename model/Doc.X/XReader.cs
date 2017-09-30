@@ -33,6 +33,11 @@ namespace Doc.X
 
         public string PropertyName => Reader.LocalName;
 
+        public void Dispose()
+        {
+
+        }
+
         public bool Read()
         {
             bool? skip = Reader.Read();

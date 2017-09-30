@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Doc.Core
 {
-    public interface IReader
+    public interface IReader : IDisposable
     {
         bool Read();
 

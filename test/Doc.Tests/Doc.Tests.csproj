@@ -46,6 +46,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DocTests.cs" />
@@ -53,6 +54,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\sample.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\core\Doc.Core\Doc.Core.csproj">
+      <Project>{B5125A9C-24F7-4DF9-AC2E-C7EB82431C60}</Project>
+      <Name>Doc.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\model\Doc.X\Doc.X.csproj">
+      <Project>{47FAF7EE-A558-40F1-B1A6-D0878AEFA26B}</Project>
+      <Name>Doc.X</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
