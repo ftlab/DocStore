@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 
 namespace Doc.Core
 {
-    public class StartPropertyToken : BaseToken
+    public abstract class BaseToken : IToken
     {
-        public override TokenType Type => TokenType.StartProperty;
-
-        public string Name { get; set; }
+        public abstract TokenType Type { get; }
 
         public override string ToString()
         {
-            return $">{Name}";
+            return $"{Type}";
         }
     }
 }

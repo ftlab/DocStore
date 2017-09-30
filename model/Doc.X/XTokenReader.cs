@@ -16,9 +16,17 @@ namespace Doc.X
             _reader = reader;
         }
 
-        public XmlReader Reader => _reader;
+        public XmlReader Reader
+            => _reader;
 
-        public XmlNodeType PrevNode { get => _prevNode; private set => _prevNode = value; }
+        public XmlNodeType PrevNode
+        { get => _prevNode; private set => _prevNode = value; }
+
+        public int LineNumber
+            => ((IXmlLineInfo)Reader)?.LineNumber ?? 0;
+
+        public int LinePosition
+            => ((IXmlLineInfo)Reader)?.LinePosition ?? 0;
 
         public void Dispose()
         {
@@ -82,7 +90,7 @@ namespace Doc.X
             };
             if (Reader.IsEmptyElement)
             {
-                yield return NullToken.Value;
+                yield return NullToken.Instance;
 
                 yield return new XEndPropertyToken()
                 {
@@ -91,5 +99,8 @@ namespace Doc.X
                 };
             }
         }
+
+        public bool HasLineInfo()
+            => ((IXmlLineInfo)Reader)?.HasLineInfo() ?? false;
     }
 }

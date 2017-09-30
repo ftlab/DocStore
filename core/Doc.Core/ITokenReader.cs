@@ -9,7 +9,7 @@ namespace Doc.Core
     /// <summary>
     /// Считыватель узлов документа
     /// </summary>
-    public interface ITokenReader : IDisposable
+    public interface ITokenReader : IDisposable, ILineInfo
     {
         /// <summary>
         /// Считать

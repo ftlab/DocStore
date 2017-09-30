@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Doc.Core
 {
-    public class StringToken : IToken
+    public class StringToken : BaseToken
     {
-        public TokenType Type => TokenType.String;
+        public override TokenType Type => TokenType.String;
 
         public string Value { get; set; }
 

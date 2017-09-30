@@ -40,13 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ILineInfo.cs" />
     <Compile Include="ITokenObserver.cs" />
     <Compile Include="ITokenVisitor.cs" />
     <Compile Include="TokenComplexObserver.cs" />
     <Compile Include="TokenObservableVisitor.cs" />
     <Compile Include="TokenVisitor.cs" />
+    <Compile Include="Token\BaseToken.cs" />
     <Compile Include="Token\EndPropertyToken.cs" />
-    <Compile Include="Token\IToken.cs" />
+    <Compile Include="IToken.cs" />
     <Compile Include="ITokenReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Token\NullToken.cs" />

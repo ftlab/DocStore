@@ -1,10 +1,12 @@
 ﻿namespace Doc.Core
 {
-    public class NullToken : IToken
+    public class NullToken : BaseToken
     {
-        public static readonly NullToken Value = new NullToken();
+        public static NullToken Instance = new NullToken();
 
-        public TokenType Type => TokenType.Null;
+        private NullToken() { }
+
+        public override TokenType Type => TokenType.Null;
 
         public override string ToString()
         {

@@ -6,6 +6,18 @@
 
         EndProperty,
 
+        StartObject,
+
+        EndObject,
+
+        StartSimple,
+
+        EndSimple,
+
+        StartArray,
+
+        EndArray,
+
         String,
 
         Null,

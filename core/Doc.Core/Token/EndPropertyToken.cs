@@ -1,8 +1,8 @@
 ﻿namespace Doc.Core
 {
-    public class EndPropertyToken : IToken
+    public class EndPropertyToken : BaseToken
     {
-        public TokenType Type => TokenType.EndProperty;
+        public override TokenType Type => TokenType.EndProperty;
 
         public string Name { get; set; }
 
