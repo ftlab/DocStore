@@ -12,8 +12,8 @@ namespace DocModel.Core
 
         string Name { get; }
 
-        IDictionary<string, IKeyInfo> Key { get; }
+        IDictionary<string, IDocKeyInfo> Key { get; }
 
-        IDictionary<string, IDocLink> Links { get; }
+        IDictionary<string, IDocLinkInfo> Links { get; }
     }
 }
