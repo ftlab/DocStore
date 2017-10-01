@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Token\XEndAttributeToken.cs" />
     <Compile Include="Token\XEndPropertyToken.cs" />
+    <Compile Include="Token\XStartAttributeToken.cs" />
     <Compile Include="Token\XStartPropertyToken.cs" />
     <Compile Include="XTokenReader.cs" />
   </ItemGroup>

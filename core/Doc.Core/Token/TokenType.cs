@@ -6,6 +6,10 @@
 
         EndProperty,
 
+        StartAttribute,
+
+        EndAttribute,
+
         StartObject,
 
         EndObject,

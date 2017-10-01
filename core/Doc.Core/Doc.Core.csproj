@@ -47,11 +47,15 @@
     <Compile Include="TokenObservableVisitor.cs" />
     <Compile Include="TokenVisitor.cs" />
     <Compile Include="Token\BaseToken.cs" />
+    <Compile Include="Token\EndAttributeToken.cs" />
+    <Compile Include="Token\EndObjectToken.cs" />
     <Compile Include="Token\EndPropertyToken.cs" />
     <Compile Include="IToken.cs" />
     <Compile Include="ITokenReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Token\NullToken.cs" />
+    <Compile Include="Token\StartAttributeToken.cs" />
+    <Compile Include="Token\StartObjectToken.cs" />
     <Compile Include="Token\StartPropertyToken.cs" />
     <Compile Include="Token\StringToken.cs" />
     <Compile Include="Token\TokenType.cs" />

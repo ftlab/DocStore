@@ -11,6 +11,8 @@ namespace Doc.X
 
         private XmlNodeType _prevNode = XmlNodeType.None;
 
+        private readonly Stack<Element> _elements = new Stack<Element>();
+
         public XTokenReader(XmlReader reader)
         {
             _reader = reader;
@@ -37,6 +39,8 @@ namespace Doc.X
         {
             while (Reader.Read())
             {
+                var currentNode = Reader.NodeType;
+
                 if (Reader.NodeType == XmlNodeType.XmlDeclaration
                     || Reader.NodeType == XmlNodeType.None
                     || Reader.NodeType == XmlNodeType.Whitespace
@@ -59,18 +63,24 @@ namespace Doc.X
                 }
                 else throw new NotSupportedException(Reader.NodeType.ToString());
 
-                PrevNode = Reader.NodeType;
+                PrevNode = currentNode;
             }
             yield break;
         }
 
         private IEnumerable<IToken> OnEndElement()
         {
+
+            if (PrevNode == XmlNodeType.EndElement)
+                yield return EndObjectToken.Instance;
+
             yield return new XEndPropertyToken()
             {
                 Name = Reader.LocalName,
                 Namespace = Reader.NamespaceURI
             };
+
+            _elements.Pop();
         }
 
         private IEnumerable<IToken> OnText()
@@ -83,11 +93,43 @@ namespace Doc.X
 
         private IEnumerable<IToken> OnElement()
         {
+            _elements.Push(new Element() { Name = Reader.LocalName });
+
+
+            if (PrevNode == XmlNodeType.Element)
+                yield return StartObjectToken.Instance;
+
             yield return new XStartPropertyToken()
             {
                 Name = Reader.LocalName,
                 Namespace = Reader.NamespaceURI,
             };
+
+            if (Reader.HasAttributes)
+            {
+                for (int i = 0; i < Reader.AttributeCount; i++)
+                {
+                    Reader.MoveToAttribute(i);
+
+                    yield return new XStartAttributeToken()
+                    {
+                        Name = Reader.LocalName,
+                        Namespace = Reader.NamespaceURI,
+                    };
+
+                    yield return new StringToken()
+                    {
+                        Value = Reader.Value,
+                    };
+
+                    yield return new XEndAttributeToken()
+                    {
+                        Name = Reader.LocalName,
+                        Namespace = Reader.NamespaceURI,
+                    };
+                }
+            }
+
             if (Reader.IsEmptyElement)
             {
                 yield return NullToken.Instance;
@@ -97,10 +139,20 @@ namespace Doc.X
                     Name = Reader.LocalName,
                     Namespace = Reader.NamespaceURI,
                 };
+
+                _elements.Pop();
             }
         }
 
         public bool HasLineInfo()
             => ((IXmlLineInfo)Reader)?.HasLineInfo() ?? false;
+
+
+        private class Element
+        {
+            public string Name;
+
+            public bool SimpleContent = true;
+        }
     }
 }
