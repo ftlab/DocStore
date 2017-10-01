@@ -19,22 +19,29 @@ namespace Doc.Core
         {
             foreach (var token in reader.Read())
             {
-                if (token.Type == TokenType.StartProperty)
-                    VisitStartProperty((StartPropertyToken)token);
-                else if (token.Type == TokenType.EndProperty)
-                    VisitEndProperty((EndPropertyToken)token);
-                else if (token.Type == TokenType.StartObject)
-                    VisitStartObject((StartObjectToken)token);
-                else if (token.Type == TokenType.EndObject)
-                    VisitEndObject((EndObjectToken)token);
-                else if (token.Type == TokenType.StartAttribute)
-                    VisitStartAttribute((StartAttributeToken)token);
-                else if (token.Type == TokenType.EndAttribute)
-                    VisitEndAttribute((EndAttributeToken)token);
-                else if (token.Type == TokenType.Null)
-                    VisitNull((NullToken)token);
-                else if (token.Type == TokenType.String)
-                    VisitString((StringToken)token);
+                try
+                {
+                    if (token.Type == TokenType.StartProperty)
+                        VisitStartProperty((StartPropertyToken)token);
+                    else if (token.Type == TokenType.EndProperty)
+                        VisitEndProperty((EndPropertyToken)token);
+                    else if (token.Type == TokenType.StartObject)
+                        VisitStartObject((StartObjectToken)token);
+                    else if (token.Type == TokenType.EndObject)
+                        VisitEndObject((EndObjectToken)token);
+                    else if (token.Type == TokenType.StartAttribute)
+                        VisitStartAttribute((StartAttributeToken)token);
+                    else if (token.Type == TokenType.EndAttribute)
+                        VisitEndAttribute((EndAttributeToken)token);
+                    else if (token.Type == TokenType.Null)
+                        VisitNull((NullToken)token);
+                    else if (token.Type == TokenType.String)
+                        VisitString((StringToken)token);
+                }
+                catch (Exception e)
+                {
+                    TokenVisitException.Raise(token, reader, e);
+                }
             }
         }
 
@@ -86,4 +93,5 @@ namespace Doc.Core
         /// <param name="token"></param>
         protected abstract void VisitStartProperty(StartPropertyToken token);
     }
+
 }

@@ -45,6 +45,7 @@
     <Compile Include="ITokenVisitor.cs" />
     <Compile Include="TokenComplexObserver.cs" />
     <Compile Include="TokenObservableVisitor.cs" />
+    <Compile Include="TokenVisitException.cs" />
     <Compile Include="TokenVisitor.cs" />
     <Compile Include="Token\BaseToken.cs" />
     <Compile Include="Token\EndAttributeToken.cs" />
