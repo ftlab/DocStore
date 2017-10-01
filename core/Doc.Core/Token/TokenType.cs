@@ -14,10 +14,6 @@
 
         EndObject,
 
-        StartSimple,
-
-        EndSimple,
-
         StartArray,
 
         EndArray,
