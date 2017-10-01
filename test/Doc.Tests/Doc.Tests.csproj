@@ -65,6 +65,10 @@
       <Project>{B5125A9C-24F7-4DF9-AC2E-C7EB82431C60}</Project>
       <Name>Doc.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\model\Doc.J\Doc.J.csproj">
+      <Project>{300407CD-1A8E-4C15-9C33-FA47883092DC}</Project>
+      <Name>Doc.J</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\model\Doc.X\Doc.X.csproj">
       <Project>{47FAF7EE-A558-40F1-B1A6-D0878AEFA26B}</Project>
       <Name>Doc.X</Name>
