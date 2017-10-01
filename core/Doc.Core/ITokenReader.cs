@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Doc.Core
 {
     /// <summary>
-    /// Считыватель узлов документа
+    /// Считыватель токенов
     /// </summary>
     public interface ITokenReader : IDisposable, ILineInfo
     {
