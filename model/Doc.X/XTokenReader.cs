@@ -5,6 +5,9 @@ using System.Xml;
 
 namespace Doc.X
 {
+    /// <summary>
+    /// Считыватель токенов из XML
+    /// </summary>
     public class XTokenReader : ITokenReader
     {
         private readonly XmlReader _reader;
