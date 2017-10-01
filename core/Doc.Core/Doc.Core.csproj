@@ -43,10 +43,10 @@
     <Compile Include="ILineInfo.cs" />
     <Compile Include="ITokenObserver.cs" />
     <Compile Include="ITokenVisitor.cs" />
-    <Compile Include="TokenComplexObserver.cs" />
-    <Compile Include="TokenObservableVisitor.cs" />
-    <Compile Include="TokenVisitException.cs" />
-    <Compile Include="TokenVisitor.cs" />
+    <Compile Include="Observer\TokenComplexObserver.cs" />
+    <Compile Include="Visitor\TokenObservableVisitor.cs" />
+    <Compile Include="Visitor\TokenVisitException.cs" />
+    <Compile Include="Visitor\TokenVisitor.cs" />
     <Compile Include="Token\BaseToken.cs" />
     <Compile Include="Token\EndAttributeToken.cs" />
     <Compile Include="Token\EndObjectToken.cs" />
@@ -60,6 +60,9 @@
     <Compile Include="Token\StartPropertyToken.cs" />
     <Compile Include="Token\StringToken.cs" />
     <Compile Include="Token\TokenType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
