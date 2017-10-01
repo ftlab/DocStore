@@ -11,10 +11,17 @@ namespace Doc.Core
     /// </summary>
     public class TokenObservableVisitor : TokenVisitor
     {
+        private readonly ITokenObserver _observer;
+
+        public TokenObservableVisitor(ITokenObserver observer)
+        {
+            _observer = observer ?? throw new ArgumentNullException(nameof(observer));
+        }
+
         /// <summary>
         /// Наблюдатель токенов
         /// </summary>
-        public ITokenObserver Observer { get; set; }
+        public ITokenObserver Observer => _observer;
 
         /// <summary>
         /// Посетить считыватель токенов
@@ -22,59 +29,59 @@ namespace Doc.Core
         /// <param name="reader"></param>
         public override void Visit(ITokenReader reader)
         {
-            Observer?.OnStartVisit();
+            Observer.OnStartVisit();
 
             base.Visit(reader);
 
-            Observer?.OnEndVisit();
+            Observer.OnEndVisit();
         }
 
         /// <summary>
         /// Посетить окончание атрибута
         /// </summary>
         /// <param name="token"></param>
-        protected override void VisitEndAttribute(EndAttributeToken token) => Observer?.OnEndAttribute(token);
+        protected override void VisitEndAttribute(EndAttributeToken token) => Observer.OnEndAttribute(token);
 
         /// <summary>
         /// Постетить окончание объекта
         /// </summary>
         /// <param name="token"></param>
-        protected override void VisitEndObject(EndObjectToken token) => Observer?.OnEndObject(token);
+        protected override void VisitEndObject(EndObjectToken token) => Observer.OnEndObject(token);
 
         /// <summary>
         /// Посетить окончание свойства
         /// </summary>
         /// <param name="token"></param>
-        protected override void VisitEndProperty(EndPropertyToken token) => Observer?.OnEndProperty(token);
+        protected override void VisitEndProperty(EndPropertyToken token) => Observer.OnEndProperty(token);
 
         /// <summary>
         /// Посетить Null ссылку
         /// </summary>
         /// <param name="token"></param>
-        protected override void VisitNull(NullToken token) => Observer?.OnNull(token);
+        protected override void VisitNull(NullToken token) => Observer.OnNull(token);
 
         /// <summary>
         /// Посетить начало атрибута
         /// </summary>
         /// <param name="token"></param>
-        protected override void VisitStartAttribute(StartAttributeToken token) => Observer?.OnStartAttribute(token);
+        protected override void VisitStartAttribute(StartAttributeToken token) => Observer.OnStartAttribute(token);
 
         /// <summary>
         /// Посетить начало объекта
         /// </summary>
         /// <param name="token"></param>
-        protected override void VisitStartObject(StartObjectToken token) => Observer?.OnStartObject(token);
+        protected override void VisitStartObject(StartObjectToken token) => Observer.OnStartObject(token);
 
         /// <summary>
         /// Посетить начало свойства
         /// </summary>
         /// <param name="token"></param>
-        protected override void VisitStartProperty(StartPropertyToken token) => Observer?.OnStartProperty(token);
+        protected override void VisitStartProperty(StartPropertyToken token) => Observer.OnStartProperty(token);
 
         /// <summary>
         /// Посетить строку
         /// </summary>
         /// <param name="token"></param>
-        protected override void VisitString(StringToken token) => Observer?.OnString(token);
+        protected override void VisitString(StringToken token) => Observer.OnString(token);
     }
 }

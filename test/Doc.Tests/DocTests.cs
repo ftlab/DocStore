@@ -41,8 +41,9 @@ namespace Doc.Tests
             using (var tokenReader = new XTokenReader(xReader))
             using (var writer = new StringWriter(json))
             {
-                var visitor = new TokenObservableVisitor();
-                visitor.Observer = new JsonBuilder(writer);
+                var visitor = new TokenObservableVisitor(
+                    new JsonBuilder(writer));
+
                 visitor.Visit(tokenReader);
             }
 
