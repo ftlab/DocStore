@@ -10,40 +10,59 @@ namespace Doc.X
     /// </summary>
     public class XTokenReader : ITokenReader
     {
+        /// <summary>
+        /// Считыватель XML
+        /// </summary>
         private readonly XmlReader _reader;
 
-        private XmlNodeType _prevNode = XmlNodeType.None;
-
+        /// <summary>
+        /// Стэк элементов
+        /// </summary>
         private readonly Stack<Element> _elements = new Stack<Element>();
 
+        /// <summary>
+        /// Ctor
+        /// </summary>
+        /// <param name="reader"></param>
         public XTokenReader(XmlReader reader)
         {
             _reader = reader;
         }
 
+        /// <summary>
+        /// Считыватель документов
+        /// </summary>
         public XmlReader Reader
             => _reader;
 
-        public XmlNodeType PrevNode
-        { get => _prevNode; private set => _prevNode = value; }
-
+        /// <summary>
+        /// Номер строки
+        /// </summary>
         public int LineNumber
             => ((IXmlLineInfo)Reader)?.LineNumber ?? 0;
 
+        /// <summary>
+        /// Позиция в строке
+        /// </summary>
         public int LinePosition
             => ((IXmlLineInfo)Reader)?.LinePosition ?? 0;
 
+        /// <summary>
+        /// Очистка ресурсов
+        /// </summary>
         public void Dispose()
         {
 
         }
 
+        /// <summary>
+        /// Считать токены
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<IToken> Read()
         {
             while (Reader.Read())
             {
-                var currentNode = Reader.NodeType;
-
                 if (Reader.NodeType == XmlNodeType.XmlDeclaration
                     || Reader.NodeType == XmlNodeType.None
                     || Reader.NodeType == XmlNodeType.Whitespace
@@ -65,16 +84,19 @@ namespace Doc.X
                         yield return token;
                 }
                 else throw new NotSupportedException(Reader.NodeType.ToString());
-
-                PrevNode = currentNode;
             }
             yield break;
         }
 
+        /// <summary>
+        /// Токены при чтении окончания элемента
+        /// </summary>
+        /// <returns></returns>
         private IEnumerable<IToken> OnEndElement()
         {
+            var element = _elements.Peek();
 
-            if (PrevNode == XmlNodeType.EndElement)
+            if (element.ComplexContent)
                 yield return EndObjectToken.Instance;
 
             yield return new XEndPropertyToken()
@@ -86,6 +108,10 @@ namespace Doc.X
             _elements.Pop();
         }
 
+        /// <summary>
+        /// Токены при чтении текста
+        /// </summary>
+        /// <returns></returns>
         private IEnumerable<IToken> OnText()
         {
             yield return new StringToken()
@@ -94,13 +120,23 @@ namespace Doc.X
             };
         }
 
+        /// <summary>
+        /// Токены при чтении начала элемента
+        /// </summary>
+        /// <returns></returns>
         private IEnumerable<IToken> OnElement()
         {
-            _elements.Push(new Element() { Name = Reader.LocalName });
+            Element prev = null;
+            if (_elements.Count > 0)
+                prev = _elements.Peek();
+            Element curr = new Element() { Name = Reader.LocalName };
+            _elements.Push(curr);
 
-
-            if (PrevNode == XmlNodeType.Element)
+            if (prev != null && prev.ComplexContent == false)
+            {
                 yield return StartObjectToken.Instance;
+                prev.ComplexContent = true;
+            }
 
             yield return new XStartPropertyToken()
             {
@@ -110,6 +146,9 @@ namespace Doc.X
 
             if (Reader.HasAttributes)
             {
+                yield return StartObjectToken.Instance;
+                curr.ComplexContent = true;
+
                 for (int i = 0; i < Reader.AttributeCount; i++)
                 {
                     Reader.MoveToAttribute(i);
@@ -137,6 +176,9 @@ namespace Doc.X
             {
                 yield return NullToken.Instance;
 
+                if (curr.ComplexContent)
+                    yield return EndObjectToken.Instance;
+
                 yield return new XEndPropertyToken()
                 {
                     Name = Reader.LocalName,
@@ -147,15 +189,28 @@ namespace Doc.X
             }
         }
 
+        /// <summary>
+        /// Содержит информацию о строке
+        /// </summary>
+        /// <returns></returns>
         public bool HasLineInfo()
             => ((IXmlLineInfo)Reader)?.HasLineInfo() ?? false;
 
 
+        /// <summary>
+        /// Элемент XML
+        /// </summary>
         private class Element
         {
+            /// <summary>
+            /// Имя элемента
+            /// </summary>
             public string Name;
 
-            public bool SimpleContent = true;
+            /// <summary>
+            /// Сложный контент
+            /// </summary>
+            public bool ComplexContent;
         }
     }
 }
